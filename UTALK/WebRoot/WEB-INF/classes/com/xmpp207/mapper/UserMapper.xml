@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmpp207.mapper.UserMapper">
+    <select id="logincheck" parameterType="com.xmpp207.pojo.User" resultType="com.xmpp207.pojo.User">
+        select * 
+        from user
+        <where>
+			<if test="name != null and name != ''">
+				and `name` = #{name}
+			</if>
+			<if test="pwd != null and pwd != ''">
+				AND `pwd` = #{pwd}
+			</if>
+		</where>
+    </select>
+    
+    <insert id="register" parameterType="com.xmpp207.pojo.User">
+       insert into 
+       user(name,pwd)
+       value(#{name},#{pwd})
+    </insert>
+</mapper>
